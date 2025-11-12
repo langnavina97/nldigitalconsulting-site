@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="NL Digital Consulting LLC - Expert Solidity engineering, smart contract architecture, tokenization, and DeFi protocol development. 3+ years experience, $7.29M+ TVL managed."
+    />
+    <meta
+      name="keywords"
+      content="Solidity engineer, DeFi consulting, smart contract development, tokenization, blockchain architecture, gas optimization, multi-chain DeFi, UUPS proxies, EIP-1167, Chainlink oracles"
+    />
+    <meta name="author" content="Navina Lang" />
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="NL Digital Consulting LLC | Secure Solidity & DeFi Engineering"
+    />
+    <meta
+      property="og:description"
+      content="Expert Solidity engineering, smart contract architecture, tokenization, and DeFi protocol development. 3+ years experience, $7.29M+ TVL managed."
+    />
+    <meta name="theme-color" content="#007bff" />
+    <title>
+      NL Digital Consulting LLC | Secure Solidity & DeFi Engineering
+    </title>
+    <style>
+      /* Basic Reset and Variables */
+      :root {
+        --primary-color: #2563eb; /* Modern blue */
+        --primary-dark: #1e40af;
+        --primary-light: #3b82f6;
+        --accent-color: #06b6d4; /* Cyan accent */
+        --secondary-color: #0f172a;
+        --secondary-light: #1e293b;
+        --light-bg: #ffffff;
+        --light-bg-gradient: linear-gradient(
+          135deg,
+          #f0f9ff 0%,
+          #e0f2fe 50%,
+          #f8fafc 100%
+        );
+        --dark-text: #1e293b;
+        --text-muted: #64748b;
+        --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      body {
+        font-family: var(--font-family);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        color: var(--dark-text);
+        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      /* Header & Navigation */
+      header {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 58, 138, 0.98) 0%,
+          rgba(15, 23, 42, 0.98) 100%
+        );
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        color: white;
+        padding: 1.2rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: var(--shadow-md);
+        border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: white;
+        text-decoration: none;
+        letter-spacing: -0.5px;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+      .logo:hover {
+        color: var(--primary-light);
+      }
+      .logo::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+      .logo:hover::after {
+        width: 100%;
+      }
+      nav a:not(.logo) {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        margin-left: 24px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      nav a:not(.logo):hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        transform: translateY(-2px);
+      }
+      nav a:not(.logo)::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+      nav a:not(.logo):hover::before {
+        width: 60%;
+      }
+      /* Sections */
+      section {
+        padding: 80px 0;
+        position: relative;
+      }
+      section:nth-child(even) {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      }
+      section:nth-child(odd):not(#hero) {
+        background: #ffffff;
+      }
+      section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 5% 10%,
+            rgba(37, 99, 235, 0.03) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 95% 90%,
+            rgba(6, 182, 212, 0.03) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+      section > .container {
+        position: relative;
+        z-index: 1;
+      }
+      #hero {
+        background: var(--light-bg-gradient);
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        padding: 100px 0;
+      }
+      #hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 10% 20%,
+            rgba(37, 99, 235, 0.08) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(6, 182, 212, 0.08) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(37, 99, 235, 0.03) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+      }
+      #hero::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(37, 99, 235, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        animation: float 20s ease-in-out infinite;
+        pointer-events: none;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(-30px, -30px) scale(1.1);
+        }
+      }
+      #hero .container {
+        position: relative;
+        z-index: 1;
+        max-width: 1100px;
+      }
+      .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      #hero > .container > p:first-of-type,
+      .hero-badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease 0.2s forwards;
+        display: inline-block;
+        padding: 8px 20px;
+        background: rgba(37, 99, 235, 0.1);
+        border: 1px solid rgba(37, 99, 235, 0.2);
+        border-radius: 50px;
+        backdrop-filter: blur(10px);
+      }
+      #hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-weight: 900;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--accent-color) 50%,
+          var(--primary-dark) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 2rem;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease 0.4s forwards;
+      }
+      #hero > .container > p:nth-of-type(2) {
+        font-size: clamp(1.1rem, 2vw, 1.4rem);
+        max-width: 800px;
+        margin: 0 auto 2.5rem auto;
+        color: var(--text-muted);
+        line-height: 1.8;
+        font-weight: 400;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease 0.6s forwards;
+      }
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin: 3rem auto;
+        flex-wrap: nowrap;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease 0.8s forwards;
+        max-width: 1000px;
+      }
+      .stat-item {
+        text-align: center;
+        padding: 1.5rem 1.5rem;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        transition: all 0.3s ease;
+        flex: 1 1 0;
+        min-width: 0;
+      }
+      .stat-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+      }
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--accent-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .stat-label {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      #hero > .container > p:nth-of-type(3) {
+        display: none; /* Hide old stat, using new stat cards */
+      }
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--accent-color) 100%
+        );
+        color: white;
+        padding: 18px 48px;
+        text-decoration: none;
+        border-radius: 12px;
+        font-size: 1.125rem;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-lg);
+        margin-top: 2rem;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease 1s forwards;
+        position: relative;
+        overflow: hidden;
+        border: none;
+        cursor: pointer;
+      }
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+      .cta-button:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: var(--shadow-xl);
+      }
+      .cta-button:hover::before {
+        left: 100%;
+      }
+      .cta-button::after {
+        content: "→";
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+      }
+      .cta-button:hover::after {
+        transform: translateX(5px);
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* General Content Styling */
+      h2 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 800;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--accent-color) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+        padding-bottom: 20px;
+      }
+      h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--accent-color)
+        );
+        border-radius: 2px;
+      }
+      .service-list,
+      .expertise-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .service-item,
+      .expertise-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        padding: 32px;
+        border-radius: 16px;
+        flex: 1 1 calc(33% - 40px);
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .service-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--accent-color)
+        );
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      .service-item:hover::before {
+        transform: scaleX(1);
+      }
+      .expertise-card {
+        flex: 1 1 calc(25% - 40px); /* Four items per row */
+        text-align: center;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 24px 20px;
+      }
+      .expertise-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(37, 99, 235, 0.3);
+      }
+      .service-item {
+        transition: all 0.3s ease;
+      }
+      .service-item:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(37, 99, 235, 0.3);
+        background: rgba(255, 255, 255, 1);
+      }
+      .service-item h3 {
+        color: var(--primary-color);
+        margin-bottom: 16px;
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+      .service-item ul {
+        list-style: none;
+        padding-left: 0;
+      }
+      .service-item ul li {
+        padding: 8px 0;
+        padding-left: 24px;
+        position: relative;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+      .service-item ul li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+      .achievement-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--primary-color), #0056b3);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin: 5px;
+      }
+      /* Contact Section Specific Styles - (Removed unnecessary form styles) */
+
+      /* Footer */
+      footer {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 58, 138, 0.98) 0%,
+          rgba(15, 23, 42, 0.98) 100%
+        );
+        color: white;
+        text-align: center;
+        padding: 30px 0;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(59, 130, 246, 0.3);
+      }
+      footer a {
+        color: var(--primary-light);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      footer a:hover {
+        color: white;
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 992px) {
+        .service-item {
+          flex: 1 1 calc(50% - 40px);
+        }
+        .expertise-card {
+          flex: 1 1 calc(33.333% - 40px);
+        }
+      }
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+        }
+        nav a {
+          margin: 5px 10px;
+          font-size: 0.9rem;
+        }
+        .service-item,
+        .expertise-card {
+          flex: 1 1 100%;
+        }
+        #hero {
+          min-height: auto;
+          padding: 80px 0 100px 0;
+        }
+        .hero-stats {
+          gap: 1rem;
+          flex-wrap: nowrap;
+        }
+        .stat-item {
+          padding: 1.25rem 1rem;
+          flex: 1 1 0;
+        }
+        .stat-value {
+          font-size: 1.75rem;
+        }
+        .stat-label {
+          font-size: 0.75rem;
+        }
+        .achievement-badge {
+          display: block;
+          margin: 10px auto;
+          max-width: 300px;
+        }
+        h2 {
+          font-size: 1.75rem;
+        }
+      }
+      @media (max-width: 480px) {
+        #hero {
+          min-height: auto;
+          padding: 60px 0 80px 0;
+        }
+        .hero-badge {
+          font-size: 0.75rem;
+          letter-spacing: 2px;
+          padding: 6px 16px;
+        }
+        .hero-stats {
+          gap: 0.75rem;
+          flex-wrap: nowrap;
+          padding: 0 10px;
+        }
+        .stat-item {
+          padding: 1rem 0.5rem;
+          flex: 1 1 0;
+        }
+        .stat-value {
+          font-size: 1.25rem;
+        }
+        .stat-label {
+          font-size: 0.65rem;
+        }
+        .cta-button {
+          padding: 16px 32px;
+          font-size: 1rem;
+          width: 100%;
+          max-width: 300px;
+          justify-content: center;
+        }
+        nav a:not(.logo) {
+          margin-left: 8px;
+          padding: 6px 10px;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <a href="#hero" class="logo">NL Digital Consulting LLC</a>
+          <div>
+            <a href="#services">Services</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-badge">NAVINA LANG | CORE SOLIDITY ENGINEER</p>
+          <h1>Secure, Optimized, and Multi-Chain DeFi Protocol Engineering</h1>
+          <p>
+            Delivering battle-tested smart contract architecture, tokenization
+            solutions, and gas-optimized protocols across leading EVM chains.
+            Expert in architectural decision-making, upgradeability patterns,
+            and cross-chain integrations.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-value">$7.29M+</span>
+              <span class="stat-label">TVL Managed</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">4</span>
+              <span class="stat-label">EVM Chains Deployed</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">90%+</span>
+              <span class="stat-label">Test Coverage</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">10+</span>
+              <span class="stat-label">DeFi Integrations</span>
+            </div>
+          </div>
+
+          <a href="#contact" class="cta-button"
+            >Secure Your Protocol: Book a Consultation</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2>High-Impact Consulting Services</h2>
+        <div class="service-list">
+          <div class="service-item">
+            <h3>Smart Contract Architecture & Development</h3>
+            <p>
+              Designing secure, scalable, and upgradeable systems. Expertise in
+              production-grade deployments across 4 EVM chains.
+            </p>
+            <ul>
+              <li>
+                <strong>Architectural Decision-Making:</strong> Strategic
+                choices on contract upgradeability vs. immutability, balancing
+                security and flexibility.
+              </li>
+              <li>
+                Implementation of UUPS Proxy patterns for critical
+                upgradeability decisions.
+              </li>
+              <li>
+                Gas reduction using EIP-1167 Minimal Proxy (Clone) patterns,
+                reducing deployment costs by ~90%.
+              </li>
+              <li>
+                Production-grade deployments across Ethereum, BNB Chain, Base,
+                and Arbitrum.
+              </li>
+            </ul>
+          </div>
+
+          <div class="service-item">
+            <h3>Tokenization & Index Token Design</h3>
+            <p>
+              Architecting tokenization mechanisms that represent proportional
+              shares as tradeable assets, enabling composable DeFi protocols.
+            </p>
+            <ul>
+              <li>
+                <strong>Core Tokenization Architecture:</strong> Designing
+                mechanisms to represent users' proportional shares as tradeable
+                index tokens.
+              </li>
+              <li>
+                Dynamic pricing modules calculating proportional share values in
+                real-time.
+              </li>
+              <li>
+                Integration with DEX protocols for seamless token trading and
+                liquidity.
+              </li>
+              <li>Performance fee calculation and distribution mechanisms.</li>
+            </ul>
+          </div>
+
+          <div class="service-item">
+            <h3>Security & Auditing Management</h3>
+            <p>
+              Establishing security best practices to protect your protocol and
+              treasury assets.
+            </p>
+            <ul>
+              <li>
+                Implementing Reentrancy Guards, Access Control, and Emergency
+                Pause Mechanisms.
+              </li>
+              <li>
+                Managing external audit cycles and successful remediation of all
+                critical and high-severity findings.
+              </li>
+              <li>
+                Safe multi-signature vault integration for protocol treasury
+                security.
+              </li>
+              <li>Comprehensive test suites achieving 90%+ code coverage.</li>
+            </ul>
+          </div>
+
+          <div class="service-item">
+            <h3>DeFi Protocol Integration & Optimization</h3>
+            <p>
+              Integrating third-party protocols (DEXs, lending/staking) to
+              facilitate core operations and yield optimization.
+            </p>
+            <ul>
+              <li>
+                Systematic gas optimization achieving an estimated 20-30%
+                reduction in high-frequency transaction costs.
+              </li>
+              <li>
+                Integration of Chainlink Oracles for slippage control, asset
+                pricing, and performance fee calculations.
+              </li>
+              <li>
+                Multi-ecosystem bridging infrastructure (EVM-to-EVM and
+                EVM-to-Solana) using protocols like deBridge.
+              </li>
+              <li>
+                Integration and management of 10+ third-party DeFi protocols for
+                deposit, withdrawal, rebalancing, and yield optimization.
+              </li>
+            </ul>
+          </div>
+
+          <div class="service-item">
+            <h3>Technical Leadership & Process</h3>
+            <p>
+              Building engineering culture, establishing development processes,
+              and mentoring teams for long-term success.
+            </p>
+            <ul>
+              <li>
+                First technical hire experience: influencing product
+                architecture and technology stack decisions.
+              </li>
+              <li>
+                Scrum Master facilitation: sprint planning and Agile best
+                practices implementation.
+              </li>
+              <li>
+                Mentoring junior developers and building collaborative
+                engineering culture.
+              </li>
+              <li>
+                Establishing internal security review processes and quality
+                assurance standards.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="expertise">
+      <div class="container">
+        <h2>Core Technical Expertise</h2>
+        <div class="expertise-grid">
+          <div class="expertise-card">Solidity / EVM</div>
+          <div class="expertise-card">Hardhat / Foundry</div>
+          <div class="expertise-card">UUPS Proxies / EIP-1167</div>
+          <div class="expertise-card">Gas Optimization (20-30% reduction)</div>
+          <div class="expertise-card">Tokenization Architecture</div>
+          <div class="expertise-card">Smart Contract Auditing</div>
+          <div class="expertise-card">Chainlink Oracles</div>
+          <div class="expertise-card">Cross-chain Bridges (deBridge)</div>
+          <div class="expertise-card">DEX Integration</div>
+          <div class="expertise-card">Lending Protocols</div>
+          <div class="expertise-card">Yield Optimization</div>
+          <div class="expertise-card">TypeScript / JavaScript</div>
+          <div class="expertise-card">Testing (Unit/Integration/Fuzzing)</div>
+          <div class="expertise-card">Multi-sig (Safe)</div>
+          <div class="expertise-card">Git / GitHub</div>
+          <div class="expertise-card">Agile / Scrum</div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; font-style: italic">
+          <strong>Chains:</strong> Ethereum, BNB Chain, Base, Arbitrum
+        </p>
+      </div>
+    </section>
+
+    <section id="achievements">
+      <div class="container">
+        <h2>Proven Track Record</h2>
+        <div style="text-align: center; max-width: 900px; margin: 0 auto">
+          <p style="font-size: 1.1rem; margin-bottom: 30px">
+            Delivered battle-tested, multi-audited smart contracts managing
+            significant value across multiple chains:
+          </p>
+          <div style="margin: 30px 0">
+            <span class="achievement-badge">$7.29M+ TVL Managed</span>
+            <span class="achievement-badge">4 EVM Chains Deployed</span>
+            <span class="achievement-badge">90%+ Test Coverage</span>
+            <span class="achievement-badge">20-30% Gas Reduction</span>
+            <span class="achievement-badge">10+ DeFi Integrations</span>
+            <span class="achievement-badge">Multi-Audited Protocols</span>
+          </div>
+          <p style="font-style: italic; color: #666; margin-top: 30px">
+            Successfully architected and deployed production-grade protocols
+            with zero critical vulnerabilities in production.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2>About NL Digital Consulting LLC</h2>
+        <div style="max-width: 900px; margin: 0 auto">
+          <p style="font-size: 1.1rem; margin-bottom: 20px">
+            NL Digital Consulting LLC is a US-based entity founded by
+            <strong>Navina Lang</strong>, a results-driven Solidity Engineer
+            with 3+ years of experience building secure multi-chain DeFi
+            protocols.
+          </p>
+          <p>
+            The firm specializes in providing comprehensive consulting for
+            early-stage and growing DeFi projects, ensuring protocols are
+            <strong>secure, efficient, and architecturally sound</strong> from
+            concept to multi-chain deployment. We focus on smart contract
+            architecture, cross-chain integrations, and gas optimization to
+            deliver battle-tested solutions.
+          </p>
+          <p>
+            <strong>Core Experience:</strong> As the first technical hire at
+            Velvet.Capital, Navina architected and deployed production-grade
+            smart contracts managing $7.29M+ TVL across Ethereum, BNB Chain,
+            Base, and Arbitrum. This hands-on experience in building and scaling
+            DeFi protocols from the ground up provides unique insights for
+            consulting clients.
+          </p>
+          <p>
+            <strong>Background:</strong> Prior to focusing on DeFi, Navina
+            gained technical experience in software development and Open-Source
+            Compliance strategy at MSG Systems, Germany, developing automated
+            compliance solutions and scientific evaluation methodologies.
+          </p>
+          <p
+            style="
+              margin-top: 30px;
+              padding-top: 20px;
+              border-top: 2px solid #dee2e6;
+            "
+          >
+            <strong>Education:</strong> B.Sc. Information Systems, Technical
+            University of Munich (TUM), 2016-2020
+          </p>
+          <p>
+            <strong>Languages:</strong> German (Native), English (Proficient)
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Get In Touch</h2>
+        <p style="text-align: center; margin-bottom: 30px">
+          Let's discuss how to build your next secure DeFi protocol. Contact me
+          directly via email or phone.
+        </p>
+
+        <div style="text-align: center; margin-bottom: 20px">
+          <p style="font-size: 1.2rem; font-weight: 600; margin: 10px 0">
+            Email:
+            <a
+              href="mailto:navina_lang@outlook.com"
+              style="color: var(--primary-color); text-decoration: none"
+              >navina_lang@outlook.com</a
+            >
+          </p>
+        </div>
+
+        <div style="text-align: center">
+          <a
+            href="mailto:navina_lang@outlook.com?subject=Consulting%20Inquiry%20from%20Website&body=Hi%20Navina,%0A%0AI%20am%20reaching%20out%20regarding%20a%20new%20project%20I%20need%20assistance%20with..."
+            class="cta-button"
+            style="padding: 15px 30px"
+          >
+            Send Email Inquiry
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>
+          &copy; <span id="currentYear"></span> NL Digital Consulting LLC (US).
+          All rights reserved.
+        </p>
+        <p>
+          <a
+            href="https://www.linkedin.com/in/navina-lang-54a0b6132/"
+            target="_blank"
+            >LinkedIn</a
+          >
+          |
+          <a href="https://github.com/langnavina97" target="_blank">GitHub</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Simple JavaScript to update the copyright year
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      // Optional: Smooth scrolling for navigation links
+      document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
