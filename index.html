@@ -66,7 +66,7 @@
           "@type": "Person",
           "name": "Navina Lang",
           "jobTitle": "Core Solidity Engineer",
-          "email": "navina_lang@outlook.com",
+          "email": "navina@nldigitalconsulting.com",
           "sameAs": [
             "https://www.linkedin.com/in/navina-lang-54a0b6132/",
             "https://github.com/langnavina97"
@@ -100,7 +100,7 @@
         "jobTitle": "Solidity Engineer",
         "description": "Expert Solidity engineer and smart contract architect with 3+ years of experience building secure, multi-chain DeFi protocols. Specialized in smart contract architecture, tokenization, gas optimization, and cross-chain integrations.",
         "url": "https://aginative-malasada-4bae3b.netlify.app/",
-        "email": "navina_lang@outlook.com",
+        "email": "navina@nldigitalconsulting.com",
         "sameAs": [
           "https://www.linkedin.com/in/navina-lang-54a0b6132/",
           "https://github.com/langnavina97"
@@ -212,32 +212,44 @@
         flex-wrap: wrap;
       }
       .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      .logo:hover {
+        transform: translateY(-2px);
+      }
+      .logo-icon {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+      }
+      .logo-text {
         font-size: 1.6rem;
         font-weight: 700;
         color: white;
-        text-decoration: none;
         letter-spacing: -0.5px;
         transition: color 0.3s ease;
-        position: relative;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
       }
-      .logo:hover {
+      .logo:hover .logo-text {
         color: var(--primary-light);
       }
-      .logo::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--primary-color);
-        transition: width 0.3s ease;
-      }
-      .logo:hover::after {
-        width: 100%;
+      @media (max-width: 768px) {
+        .logo {
+          flex-direction: column;
+          gap: 8px;
+        }
+        .logo-icon {
+          width: 40px;
+          height: 40px;
+        }
+        .logo-text {
+          font-size: 1.3rem;
+        }
       }
       nav a:not(.logo) {
         color: rgba(255, 255, 255, 0.9);
@@ -726,11 +738,8 @@
           gap: 1rem;
         }
         .logo {
-          font-size: 1.3rem;
-          text-align: center;
           width: 100%;
-          padding: 0 10px;
-          word-break: break-word;
+          justify-content: center;
         }
         nav > div {
           display: flex;
@@ -787,8 +796,8 @@
           padding: 0.8rem 0;
         }
         .logo {
-          font-size: 1.1rem;
-          padding: 0 10px;
+          width: 100%;
+          justify-content: center;
         }
         nav > div {
           gap: 0.4rem;
@@ -836,7 +845,37 @@
     <header>
       <div class="container">
         <nav>
-          <a href="#hero" class="logo">NL Digital Consulting LLC</a>
+          <a href="#hero" class="logo">
+            <svg
+              class="logo-icon"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Simple hexagon outline -->
+              <polygon
+                points="50,5 90,25 90,75 50,95 10,75 10,25"
+                fill="none"
+                stroke="#3b82f6"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <!-- NL text -->
+              <text
+                x="50"
+                y="60"
+                font-family="Arial, sans-serif"
+                font-size="32"
+                font-weight="bold"
+                fill="#2563eb"
+                text-anchor="middle"
+                dominant-baseline="middle"
+              >
+                NL
+              </text>
+            </svg>
+            <span class="logo-text">NL Digital Consulting LLC</span>
+          </a>
           <div>
             <a href="#services">Services</a>
             <a href="#expertise">Expertise</a>
@@ -1131,16 +1170,16 @@
           <p style="font-size: 1.2rem; font-weight: 600; margin: 10px 0">
             Email:
             <a
-              href="mailto:navina_lang@outlook.com"
+              href="mailto:navina@nldigitalconsulting.com"
               style="color: var(--primary-color); text-decoration: none"
-              >navina_lang@outlook.com</a
+              >navina@nldigitalconsulting.com</a
             >
           </p>
         </div>
 
         <div style="text-align: center">
           <a
-            href="mailto:navina_lang@outlook.com?subject=Consulting%20Inquiry%20from%20Website&body=Hi%20Navina,%0A%0AI%20am%20reaching%20out%20regarding%20a%20new%20project%20I%20need%20assistance%20with..."
+            href="mailto:navina@nldigitalconsulting.com?subject=Consulting%20Inquiry%20from%20Website&body=Hi%20Navina,%0A%0AI%20am%20reaching%20out%20regarding%20a%20new%20project%20I%20need%20assistance%20with..."
             class="cta-button"
             style="padding: 15px 30px"
           >
