@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" role="img" aria-label="NL Digital Consulting monogram">
+  <defs>
+    <linearGradient id="nl-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f75d4" />
+      <stop offset="100%" stop-color="#0a4fb0" />
+    </linearGradient>
+  </defs>
+  <g fill="url(#nl-gradient)">
+    <path d="M25 110V10h18l72 92V10h18v100h-18L43 32v78H25Z" />
+    <path d="M118 10h18v78h34v22h-52Z" />
+  </g>
+</svg>
+
